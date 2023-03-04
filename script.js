@@ -2,7 +2,19 @@ const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
 const sendButton = document.getElementById("send-button");
 
+// Send message when Send button is clicked
 sendButton.addEventListener("click", () => {
+  sendMessage();
+});
+
+// Send message when Enter key is pressed
+chatInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+});
+
+function sendMessage() {
   const userInput = chatInput.value.trim();
   if (userInput !== "") {
     displayMessage(userInput, "sent");
@@ -16,7 +28,7 @@ sendButton.addEventListener("click", () => {
     }, 1000);
     chatInput.value = "";
   }
-});
+}
 
 function generateResponse(userInput) {
   const responses = [
